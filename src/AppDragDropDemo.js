@@ -28,13 +28,12 @@ export default class AppDragDropDemo extends Component {
   }
 
   onDragStart = (ev, id) => {
-    console.log('dragstart: ', id);
     ev.dataTransfer.setData('id', id);
   }
 
   onDrop = (ev, cat) => {
     let id = ev.dataTransfer.getData('id');
-    let tasks = this.state.tasks.filter((task) => {
+    let tasks = this.state.tasks.map((task) => {
       if (task.name === id) {
         task.category = cat;
       }
@@ -42,7 +41,6 @@ export default class AppDragDropDemo extends Component {
     })
 
     this.setState({
-      ...this.state,
       tasks
     })
   }
